@@ -1,23 +1,27 @@
 import PySimpleGUI as pygui
 import os 
 
-# Create window
-window = pygui.Window(
-    title="RDE Site Update Tool", 
-    layout=[
-        [pygui.Text("Hello from PySimpleGUI")],
-        [pygui.Button("OK")],
-    ], 
-    margins=(100, 50)
-)
+if len(os.listdir('./assets/repo')) == 0:
+    print("No files found in repo directory. Please add the source code for your website and try again.")
+else:
 
-# Open window
-window.read()
+    # Create window
+    window = pygui.Window(
+        title="RDE Site Update Tool", 
+        layout=[
+            [pygui.Text("What would you like to do?", size=(30, 1), font=("Helvetica", 25))],
+            [pygui.Button("Update Blog"), pygui.Button("Update Portfolio"), pygui.Button("EXIT")],
+        ], 
+        margins=(500, 250)
+    )
 
-# Create event loop
-while True:
-    event, values = window.read()
-    if event == "OK" or event == pygui.WIN_CLOSED:
-        break
+    # Open window
+    window.read()
 
-window.close()
+    # Create event loop
+    while True:
+        event, values = window.read()
+        if event == "OK" or event == pygui.WIN_CLOSED:
+            break
+
+    window.close()
